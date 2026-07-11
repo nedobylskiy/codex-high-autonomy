@@ -55,6 +55,25 @@ When the language choice changes for a task, update this file.
 - Use interfaces and explicit types for data contracts, especially for API input and output.
 - Avoid loosely typed request and response payloads when building HTTP APIs.
 
+## Stage 0: Request Preparation
+
+Before active implementation starts, the agent should perform a Stage 0 preparation pass.
+
+At this stage, the agent should:
+
+1. Analyze the user's task.
+2. Build a list of things that may be required to complete it.
+3. Ask the user for missing inputs, access, files, credentials, environments, examples, or constraints that may be needed.
+
+For TypeScript projects, this may include:
+
+- API schemas or example payloads
+- database connection details
+- external service credentials
+- expected environment variables
+- deployment targets
+- sample files or test fixtures
+
 ## Recommended Project Structure
 
 For HTTP projects, prefer a structure close to:
@@ -119,12 +138,13 @@ This pattern is preferred because it keeps:
 
 When starting a new major TypeScript task, the agent should verify:
 
-1. `package.json` exists or is created.
-2. `tsconfig.json` exists and matches the project direction.
-3. `tsoa.json` exists when the project exposes a typed HTTP API with controller-based routing.
-4. `.secrets.md` exists if secrets or third-party integrations are involved.
-5. `.secrets.md` is listed in `.gitignore`.
-6. `tasks.md`, `latestStatus.md`, and `lastsPoints.md` are updated before work grows large.
+1. Stage 0 is completed and the likely required user-provided inputs are requested.
+2. `package.json` exists or is created.
+3. `tsconfig.json` exists and matches the project direction.
+4. `tsoa.json` exists when the project exposes a typed HTTP API with controller-based routing.
+5. `.secrets.md` exists if secrets or third-party integrations are involved.
+6. `.secrets.md` is listed in `.gitignore`.
+7. `tasks.md`, `latestStatus.md`, and `lastsPoints.md` are updated before work grows large.
 
 ## Execution Rules
 

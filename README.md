@@ -23,6 +23,7 @@ Together, these files help Codex:
 - expose progress clearly to the user
 - keep important milestones visible in Git history
 - keep project secret usage visible without committing the secret file itself
+- start each task with a preparation pass that identifies what the user may need to provide
 
 ## How To Use
 

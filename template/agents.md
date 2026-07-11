@@ -48,16 +48,29 @@ The agent should keep moving the task forward with minimal user intervention unt
 6. Important milestones should be captured in Git with clear commit messages.
 7. If project secrets are relevant, the project should maintain a `.secrets.md` file and keep it ignored by Git.
 
+## Stage 0: Request Preparation
+
+Before active implementation starts, the agent should perform a Stage 0 preparation pass.
+
+At this stage, the agent should:
+
+1. Analyze the user's task.
+2. Build a list of things that may be required to complete it.
+3. Ask the user for missing inputs, access, files, credentials, environments, examples, or constraints that may be needed.
+
+This should happen before the main execution loop whenever the task depends on information or resources the user can provide in advance.
+
 ## Required Start Sequence For A New Major Task
 
 When a new major task begins, the agent should:
 
 1. Create a dedicated task folder.
-2. Ensure `.secrets.md` exists if the task depends on secrets, credentials, or external integrations.
-3. Ensure `.secrets.md` is listed in `.gitignore`.
-4. Create or update a local `tasks.md` for that task when needed.
-5. Record the current goal and next steps in `latestStatus.md`.
-6. Maintain `lastsPoints.md` as a compact recovery note for context restoration.
+2. Perform Stage 0 and identify what may be needed from the user.
+3. Ensure `.secrets.md` exists if the task depends on secrets, credentials, or external integrations.
+4. Ensure `.secrets.md` is listed in `.gitignore`.
+5. Create or update a local `tasks.md` for that task when needed.
+6. Record the current goal and next steps in `latestStatus.md`.
+7. Maintain `lastsPoints.md` as a compact recovery note for context restoration.
 
 ## Required Files
 
