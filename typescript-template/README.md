@@ -22,7 +22,7 @@ It is intended for services and applications where the project should follow a c
 
 ## Architectural Direction
 
-The TypeScript rules here are based on a practical Express + `tsoa` structure similar to the one used in `Billions.works/payout-processor`.
+The TypeScript rules here are based on a practical Express + `tsoa` structure built around controller classes, generated routes, and a clean split between HTTP, business logic, and persistence layers.
 
 That means:
 
