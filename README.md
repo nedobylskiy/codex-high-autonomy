@@ -13,6 +13,7 @@ This template gives Codex a small set of Markdown state files that act as a loca
 - `latestStatus.md` stores the detailed current status
 - `lastsPoints.md` stores a compact recovery summary
 - `stop.md` records user interruptions or redirects
+- `.secrets.md` documents project-level secrets available to autonomous agents
 
 Together, these files help Codex:
 
@@ -21,14 +22,16 @@ Together, these files help Codex:
 - resume work after a new thread or a lost context window
 - expose progress clearly to the user
 - keep important milestones visible in Git history
+- keep project secret usage visible without committing the secret file itself
 
 ## How To Use
 
 1. Copy the contents of [`template/`](./template/) into your project or into a dedicated task folder.
-2. Update `agents.md` first so it reflects your project rules, language preferences, and task structure.
-3. Keep `tasks.md`, `latestStatus.md`, and `lastsPoints.md` updated as the work progresses.
-4. Record real stop or redirect events in `stop.md`.
-5. Commit important milestones to Git with clear messages.
+2. Make sure `.secrets.md` exists and stays listed in `.gitignore`.
+3. Update `agents.md` first so it reflects your project rules, language preferences, task structure, and secret-handling expectations.
+4. Keep `tasks.md`, `latestStatus.md`, and `lastsPoints.md` updated as the work progresses.
+5. Record real stop or redirect events in `stop.md`.
+6. Commit important milestones to Git with clear messages.
 
 ## Important For Codex
 
@@ -41,11 +44,25 @@ When a new Codex agent joins the project, or when context has been compressed or
 - which language should be used for the user
 - which language may be used for internal notes
 - how state should be preserved between long-running task cycles
+- how project secrets are documented and where they should be looked up
+
+## Secret Handling
+
+Autonomous agents may have access to system-provided secrets or project-specific credentials.
+
+To keep secret handling explicit at the project level:
+
+- project secrets should be mirrored in `.secrets.md`
+- `.secrets.md` should describe what each secret is for, without exposing it in public repositories
+- `.secrets.md` must be added to `.gitignore` when the project is created
+- `agents.md` should mention that the file exists and should be checked when secrets are relevant
 
 ## Repository Structure
 
 ```text
 template/
+  .gitignore
+  .secrets.md
   agents.md
   tasks.md
   lastsPoints.md

@@ -5,6 +5,7 @@ If context was compressed, lost, or a new Codex agent is attached to the project
 
 If you are a new agent, read these files in order:
 - `agents.md`
+- `.secrets.md` when secrets, credentials, or external integrations may matter
 - `tasks.md`
 - `latestStatus.md`
 - `lastsPoints.md`
@@ -45,15 +46,18 @@ The agent should keep moving the task forward with minimal user intervention unt
 4. The user may interrupt, redirect, or stop the work at any time. Such events must be recorded.
 5. Every major task inside the project should get its own task folder.
 6. Important milestones should be captured in Git with clear commit messages.
+7. If project secrets are relevant, the project should maintain a `.secrets.md` file and keep it ignored by Git.
 
 ## Required Start Sequence For A New Major Task
 
 When a new major task begins, the agent should:
 
 1. Create a dedicated task folder.
-2. Create or update a local `tasks.md` for that task when needed.
-3. Record the current goal and next steps in `latestStatus.md`.
-4. Maintain `lastsPoints.md` as a compact recovery note for context restoration.
+2. Ensure `.secrets.md` exists if the task depends on secrets, credentials, or external integrations.
+3. Ensure `.secrets.md` is listed in `.gitignore`.
+4. Create or update a local `tasks.md` for that task when needed.
+5. Record the current goal and next steps in `latestStatus.md`.
+6. Maintain `lastsPoints.md` as a compact recovery note for context restoration.
 
 ## Required Files
 
@@ -98,6 +102,16 @@ If the user stops execution or changes direction, record:
 - the last completed action
 - the state in which the work was left
 
+### `.secrets.md`
+
+Stores project-level information about secrets available to the agent.
+
+Rules:
+- create it when a project depends on secrets or external credentials
+- keep it in `.gitignore`
+- use it to document what secrets exist and what they are used for
+- do not commit actual secret values to public repositories
+
 ## Execution Rules
 
 The agent should continue working until one of these states is reached:
@@ -129,15 +143,17 @@ At minimum, preserve:
 3. Each commit message should clearly describe what was captured.
 4. Git may be used as a history source, a context source, and a rollback point.
 5. The agent must not remove or blindly overwrite user changes without explicit user approval.
+6. `.secrets.md` must stay ignored by Git unless the user explicitly wants a private-repository workflow that commits it.
 
 ## Instructions For A Newly Attached Agent
 
 If you join this project after context loss or in a new thread:
 
 1. Read `agents.md`.
-2. Read `latestStatus.md`.
-3. Read `lastsPoints.md`.
-4. Read `tasks.md`.
-5. Check `stop.md`.
-6. Inspect Git history if recent decisions need to be reconstructed.
-7. Resume the active task instead of rebuilding context from scratch.
+2. Read `.secrets.md` if the task may depend on secrets, credentials, or external services.
+3. Read `latestStatus.md`.
+4. Read `lastsPoints.md`.
+5. Read `tasks.md`.
+6. Check `stop.md`.
+7. Inspect Git history if recent decisions need to be reconstructed.
+8. Resume the active task instead of rebuilding context from scratch.
