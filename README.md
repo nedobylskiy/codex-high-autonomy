@@ -68,7 +68,21 @@ template/
   lastsPoints.md
   latestStatus.md
   stop.md
+typescript-template/
+  .gitignore
+  .secrets.md
+  README.md
+  agents.md
+  tasks.md
+  lastsPoints.md
+  latestStatus.md
+  stop.md
 ```
+
+## Specialized Templates
+
+- [`template/`](./template/) is the generic Codex high-autonomy baseline.
+- [`typescript-template/`](./typescript-template/) extends the baseline with TypeScript, Node.js, Express, `tsoa`, Sequelize, PostgreSQL, and common integration preferences.
 
 ## Philosophy
 
