@@ -133,6 +133,30 @@ The agent should continue working until one of these states is reached:
 - an unrecoverable blocking issue is found
 - a practical timeout is reached and explicit user instruction is needed to resume
 
+## Autonomous Research Loop
+
+For open-ended experimental tasks, the agent must not stop after the first working result.
+The agent should continue iterating in a loop:
+
+`implement -> run -> measure -> compare -> improve -> run again`
+
+The agent may continue without asking the user for confirmation unless:
+- a destructive or costly action is required
+- requirements conflict
+- external access or secrets are needed
+- a predefined stop condition is reached
+
+For strategy, optimization, and backtesting tasks, continue until at least one of these is true:
+- the target KPI is reached
+- 3 consecutive iterations fail to improve the best result materially
+- the configured time or iteration budget is exhausted
+- a hard blocker is found
+
+Each iteration must update local status files with:
+- current best result
+- what changed
+- what will be tried next
+
 Examples of blocking issues:
 - disk space is exhausted
 - required tools are unavailable
